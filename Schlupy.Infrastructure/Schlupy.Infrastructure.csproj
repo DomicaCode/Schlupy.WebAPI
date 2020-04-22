@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,9 +6,18 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="Autofac.Extras.AggregateService" Version="5.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Schlupy.Model.Common\Schlupy.Model.Common.csproj" />
+    <ProjectReference Include="..\Schlupy.Model\Schlupy.Model.csproj" />
+    <ProjectReference Include="..\Schlupy.Repository.Common\Schlupy.Repository.Common.csproj" />
+    <ProjectReference Include="..\Schlupy.Repository\Schlupy.Repository.csproj" />
+    <ProjectReference Include="..\Schlupy.Service.Common\Schlupy.Service.Common.csproj" />
+    <ProjectReference Include="..\Schlupy.Service\Schlupy.Service.csproj" />
+  </ItemGroup>
 </Project>

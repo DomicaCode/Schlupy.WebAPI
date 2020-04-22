@@ -10,4 +10,13 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Schlupy.DAL\Schlupy.DAL.csproj" />
+    <ProjectReference Include="..\Schlupy.Repository.Common\Schlupy.Repository.Common.csproj" />
+  </ItemGroup>
+
 </Project>

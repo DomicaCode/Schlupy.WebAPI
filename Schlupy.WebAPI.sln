@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schlupy.Repository.Common",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schlupy.DAL", "Schlupy.DAL\Schlupy.DAL.csproj", "{BD90E220-85F1-4FD7-851E-1E4EB3CA7ABB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schlupy.Common", "Schlupy.Common\Schlupy.Common.csproj", "{2CDF02E6-E08F-45D3-8AB1-7D56C0D40DD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{BD90E220-85F1-4FD7-851E-1E4EB3CA7ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD90E220-85F1-4FD7-851E-1E4EB3CA7ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD90E220-85F1-4FD7-851E-1E4EB3CA7ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CDF02E6-E08F-45D3-8AB1-7D56C0D40DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CDF02E6-E08F-45D3-8AB1-7D56C0D40DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CDF02E6-E08F-45D3-8AB1-7D56C0D40DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CDF02E6-E08F-45D3-8AB1-7D56C0D40DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

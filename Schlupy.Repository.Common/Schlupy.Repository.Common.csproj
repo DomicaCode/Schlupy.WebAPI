@@ -10,4 +10,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Schlupy.Common\Schlupy.Common.csproj" />
+    <ProjectReference Include="..\Schlupy.Model.Common\Schlupy.Model.Common.csproj" />
+  </ItemGroup>
+
 </Project>
