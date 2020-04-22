@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Schlupy.WebAPI.Controllers.Base;
 
 namespace Schlupy.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TestController : ControllerBase
+    public class TestController : BaseController
     {
         #region Methods
 
