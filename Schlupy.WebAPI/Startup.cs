@@ -54,7 +54,7 @@ namespace Schlupy.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
@@ -64,7 +64,7 @@ namespace Schlupy.WebAPI
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             var jwtSettings = new JwtSettings();
-            configuration.Bind(nameof(jwtSettings), jwtSettings);
+            //configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
 
             services.AddAuthentication(authentication =>
@@ -79,7 +79,7 @@ namespace Schlupy.WebAPI
                     bearer.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetValue<string>("JwtSettings:Secret"))),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         RequireExpirationTime = false,

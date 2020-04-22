@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Schlupy.Repository;
 using Schlupy.Repository.Common;
+using System.Linq;
 
 namespace Schlupy.Infrastructure
 {
@@ -17,6 +18,14 @@ namespace Schlupy.Infrastructure
             ;
 
             #endregion Repositories
+
+            #region Services
+
+            builder.RegisterAssemblyTypes(System.Reflection.Assembly.GetExecutingAssembly())
+               .Where(t => t.Name.EndsWith("Services"))
+               .AsImplementedInterfaces();
+
+            #endregion Services
 
             #region Filters
 
