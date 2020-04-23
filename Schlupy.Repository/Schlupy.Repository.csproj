@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Schlupy.DAL\Schlupy.DAL.csproj" />
     <ProjectReference Include="..\Schlupy.Repository.Common\Schlupy.Repository.Common.csproj" />
   </ItemGroup>

@@ -1,12 +1,15 @@
-﻿using System;
-
-namespace Schlupy.Model.Common.Models
+﻿namespace Schlupy.Model.Common.Models
 {
-    public interface IUser
+    public interface IUser : IBaseModel
     {
         #region Properties
 
-        Guid Id { get; set; }
+        string Email { get; set; }
+
+        string HashedPassword { get; set; }
+
+        string PasswordSalt { get; set; }
+        string Username { get; set; }
 
         #endregion Properties
     }

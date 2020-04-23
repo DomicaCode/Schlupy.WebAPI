@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Schlupy.Repository;
 using Schlupy.Repository.Common;
+using Schlupy.Repository.Common.Repositories;
+using Schlupy.Repository.Repositories;
 using Schlupy.Service.Common.Services.Authorization;
 using Schlupy.Service.Common.Services.Membership;
 using Schlupy.Service.Services.Authorization;
@@ -19,6 +21,8 @@ namespace Schlupy.Infrastructure
             builder.RegisterGeneric(typeof(BaseRepository<,>))
                 .As(typeof(IBaseRepository<,>));
 
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+
             #endregion Repositories
 
             #region Services
@@ -29,6 +33,7 @@ namespace Schlupy.Infrastructure
 
             builder.RegisterType<LoginService>().As<ILoginService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<UserService>().As<IUserService>();
 
             #endregion Services
 

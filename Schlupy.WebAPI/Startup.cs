@@ -13,6 +13,7 @@ using Schlupy.DAL.Context;
 using Schlupy.Infrastructure;
 using Schlupy.Infrastructure.Settings;
 using Schlupy.Model;
+using Schlupy.WebAPI.Models;
 using System.Text;
 
 namespace Schlupy.WebAPI
@@ -98,7 +99,13 @@ namespace Schlupy.WebAPI
                     };
                 });
 
-            services.AddAutoMapper(c => c.AddProfile<ModelMappings>(), typeof(Startup));
+            services.AddAutoMapper(
+                    c =>
+                    {
+                        c.AddProfile<ModelMappings>();
+                        c.AddProfile<RestMappings>();
+                    },
+                typeof(Startup));
         }
 
         #endregion Methods

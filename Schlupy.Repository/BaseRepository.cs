@@ -16,8 +16,8 @@ namespace Schlupy.Repository
     {
         #region Fields
 
+        public readonly DbSet<TEntity> _dbSet;
         private readonly SchlupyContext _context;
-        private readonly DbSet<TEntity> _dbSet;
 
         #endregion Fields
 
@@ -89,11 +89,14 @@ namespace Schlupy.Repository
                 return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
             }
 
-            return new TEntity();
+            return null;
         }
 
         public virtual async Task<bool> InsertAsync(TEntity entity)
         {
+            entity.DateCreated = DateTime.UtcNow;
+            entity.DateUpdated = DateTime.UtcNow;
+
             var result = _dbSet.Add(entity);
 
             if (result.State != EntityState.Added) return false;

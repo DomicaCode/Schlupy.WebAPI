@@ -8,6 +8,10 @@ namespace Schlupy.Model
     {
         #region Properties
 
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set; }
+
         [Key]
         public Guid Id { get; set; }
 

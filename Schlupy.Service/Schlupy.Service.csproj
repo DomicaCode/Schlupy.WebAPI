@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Schlupy.Model.Common\Schlupy.Model.Common.csproj" />
     <ProjectReference Include="..\Schlupy.Model\Schlupy.Model.csproj" />
+    <ProjectReference Include="..\Schlupy.Repository.Common\Schlupy.Repository.Common.csproj" />
     <ProjectReference Include="..\Schlupy.Service.Common\Schlupy.Service.Common.csproj" />
   </ItemGroup>
 </Project>

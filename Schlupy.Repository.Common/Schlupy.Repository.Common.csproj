@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Schlupy.Common\Schlupy.Common.csproj" />
     <ProjectReference Include="..\Schlupy.Model.Common\Schlupy.Model.Common.csproj" />
+    <ProjectReference Include="..\Schlupy.Model\Schlupy.Model.csproj" />
   </ItemGroup>
 
 </Project>
