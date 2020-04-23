@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
+using Schlupy.Model.Common;
 
 namespace Schlupy.Model
 {
@@ -8,6 +10,10 @@ namespace Schlupy.Model
 
         public ModelMappings()
         {
+            CreateMap<SecurityToken, Token>().ReverseMap();
+            CreateMap<SecurityToken, IToken>().ReverseMap();
+
+            CreateMap<Token, IToken>().ReverseMap();
         }
 
         #endregion Constructors

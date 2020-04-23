@@ -8,9 +8,12 @@
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Schlupy.Model.Common\Schlupy.Model.Common.csproj" />
+    <ProjectReference Include="..\Schlupy.Model\Schlupy.Model.csproj" />
     <ProjectReference Include="..\Schlupy.Service.Common\Schlupy.Service.Common.csproj" />
   </ItemGroup>
 </Project>

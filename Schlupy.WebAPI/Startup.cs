@@ -1,3 +1,5 @@
+using Autofac;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Schlupy.DAL.Context;
+using Schlupy.Infrastructure;
 using Schlupy.Infrastructure.Settings;
+using Schlupy.Model;
 using System.Text;
 
 namespace Schlupy.WebAPI
@@ -53,6 +57,11 @@ namespace Schlupy.WebAPI
             });
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new DIModule());
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -86,6 +95,8 @@ namespace Schlupy.WebAPI
                         ValidateLifetime = true
                     };
                 });
+
+            services.AddAutoMapper(c => c.AddProfile<ModelMappings>(), typeof(Startup));
         }
 
         #endregion Methods
