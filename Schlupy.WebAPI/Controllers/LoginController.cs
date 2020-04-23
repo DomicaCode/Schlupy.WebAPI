@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Schlupy.Service.Common.Services.Membership;
+using Schlupy.WebAPI.Controllers.Base;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
@@ -7,7 +10,7 @@ namespace Schlupy.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController : BaseController
     {
         #region Constructors
 
@@ -38,6 +41,15 @@ namespace Schlupy.WebAPI.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("test")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> Test()
+        {
+            var userId = GetUserId();
+            return Ok();
         }
 
         #endregion Methods

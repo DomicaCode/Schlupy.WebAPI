@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Schlupy.WebAPI.Controllers.Base
 {
@@ -17,5 +18,19 @@ namespace Schlupy.WebAPI.Controllers.Base
         protected string BaseRoute { get { return $"{_apiBase}/{_apiVersion}"; } }
 
         #endregion Properties
+
+        #region Methods
+
+        protected string GetUserId()
+        {
+            if (HttpContext.User == null)
+            {
+                return string.Empty;
+            }
+
+            return HttpContext.User.Claims.Single(x => x.Type == "id").Value;
+        }
+
+        #endregion Methods
     }
 }

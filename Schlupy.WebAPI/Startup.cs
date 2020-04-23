@@ -37,7 +37,7 @@ namespace Schlupy.WebAPI
         #region Methods
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SchlupyContext context)
         {
             if (env.IsDevelopment())
             {
@@ -55,6 +55,8 @@ namespace Schlupy.WebAPI
             {
                 endpoints.MapControllers();
             });
+
+            context.Database.Migrate();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -68,7 +70,7 @@ namespace Schlupy.WebAPI
             services.AddControllers();
 
             services.AddDbContext<SchlupyContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Schlupy.WebAPI")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
