@@ -13,6 +13,7 @@ using Schlupy.DAL.Context;
 using Schlupy.Infrastructure;
 using Schlupy.Infrastructure.Settings;
 using Schlupy.Model;
+using Schlupy.WebAPI.Infrastructure;
 using Schlupy.WebAPI.Models;
 using System.Text;
 
@@ -44,6 +45,8 @@ namespace Schlupy.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseHttpsRedirection();
 

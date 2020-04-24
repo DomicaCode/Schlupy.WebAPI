@@ -36,9 +36,16 @@ namespace Schlupy.WebAPI.Controllers
         {
             var user = Mapper.Map<User>(model);
 
-            var response = await UserService.RegisterAsync(user);
+            try
+            {
+                var response = await UserService.RegisterAsync(user);
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         #endregion Methods

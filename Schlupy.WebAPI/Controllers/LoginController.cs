@@ -30,7 +30,7 @@ namespace Schlupy.WebAPI.Controllers
         #region Methods
 
         [HttpPost]
-        [Route("login")]
+        [Route("")]
         public async Task<IActionResult> Login([FromBody] LoginInfo model)
         {
             var token = await LoginService.LoginAsync(model.Username, model.Password);

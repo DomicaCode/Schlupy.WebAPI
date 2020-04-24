@@ -3,6 +3,7 @@ using Schlupy.Model.Models;
 using Schlupy.Repository.Common.Repositories;
 using Schlupy.Service.Common.Services.Membership;
 using Schlupy.Service.Handlers;
+using System;
 using System.Threading.Tasks;
 
 namespace Schlupy.Service.Services.Membership
@@ -33,12 +34,31 @@ namespace Schlupy.Service.Services.Membership
 
         public async Task<bool> RegisterAsync(User user)
         {
+            var filter = new UserFilter
+            {
+                Username = user.Username
+            };
+
+            var currentUser = await GetUserAsync(filter);
+
+            if (currentUser != null)
+            {
+                throw new Exception("User already exists");
+            }
+
             var hashedPassword = PasswordHandler.GenerateSaltedHash(64, user.Password);
 
             user.HashedPassword = hashedPassword.Hash;
             user.PasswordSalt = hashedPassword.Salt;
 
-            return await UserRepository.InsertAsync(user);
+            try
+            {
+                return await UserRepository.InsertAsync(user);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         #endregion Methods

@@ -101,9 +101,16 @@ namespace Schlupy.Repository
 
             if (result.State != EntityState.Added) return false;
 
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
 
-            return true;
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         #endregion Methods
