@@ -57,6 +57,8 @@ namespace Schlupy.WebAPI
                 endpoints.MapControllers();
             });
 
+            context.Database.EnsureCreated();
+
             context.Database.Migrate();
         }
 
