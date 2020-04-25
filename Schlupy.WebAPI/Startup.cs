@@ -60,6 +60,13 @@ namespace Schlupy.WebAPI
                 endpoints.MapControllers();
             });
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Schlupy API v1");
+            });
+
             context.Database.EnsureCreated();
 
             context.Database.Migrate();
@@ -83,6 +90,11 @@ namespace Schlupy.WebAPI
             var jwtSettings = new JwtSettings();
             //configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Schlupy API", Version = "v1" });
+            });
 
             services.AddAuthentication(authentication =>
             {
