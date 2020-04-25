@@ -1,5 +1,6 @@
 ﻿using Schlupy.Common.Filters;
 using Schlupy.Model.Models;
+using Schlupy.Model.Response;
 using Schlupy.Repository.Common.Repositories;
 using Schlupy.Service.Common.Services.Membership;
 using Schlupy.Service.Handlers;
@@ -32,8 +33,10 @@ namespace Schlupy.Service.Services.Membership
             return await UserRepository.GetAsync(filter);
         }
 
-        public async Task<bool> RegisterAsync(User user)
+        public async Task<BaseResponse> RegisterAsync(User user)
         {
+            var response = new BaseResponse();
+
             var filter = new UserFilter
             {
                 Username = user.Username
@@ -53,7 +56,11 @@ namespace Schlupy.Service.Services.Membership
 
             try
             {
-                return await UserRepository.InsertAsync(user);
+                await UserRepository.InsertAsync(user);
+                response.IsSuccess = true;
+                response.Message = "User successfully added";
+
+                return response;
             }
             catch (Exception)
             {
