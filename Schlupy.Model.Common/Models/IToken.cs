@@ -1,4 +1,4 @@
-﻿namespace Schlupy.Model.Common
+﻿namespace Schlupy.Model.Common.Models
 {
     public interface IToken
     {

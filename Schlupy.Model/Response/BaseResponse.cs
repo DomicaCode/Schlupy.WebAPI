@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Schlupy.Model.Response
+﻿namespace Schlupy.Model.Response
 {
     public class BaseResponse
     {

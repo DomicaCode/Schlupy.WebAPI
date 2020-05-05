@@ -1,6 +1,6 @@
-﻿using Schlupy.Model.Common;
+﻿using Schlupy.Model.Common.Models;
 
-namespace Schlupy.Model
+namespace Schlupy.Model.Models
 {
     public class Token : IToken
     {

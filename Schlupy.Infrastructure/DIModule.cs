@@ -10,6 +10,7 @@ using Schlupy.Service.Services.Membership;
 
 namespace Schlupy.Infrastructure
 {
+    // ReSharper disable once InconsistentNaming
     public class DIModule : Module
     {
         #region Methods

@@ -2,7 +2,7 @@
 using System;
 using System.Security.Cryptography;
 
-namespace Schlupy.Service.Handlers
+namespace Schlupy.Service.Handlers.Password
 {
     public static class PasswordHandler
     {

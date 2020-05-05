@@ -3,7 +3,7 @@ using Schlupy.Model.Models;
 using Schlupy.Model.Response;
 using Schlupy.Repository.Common.Repositories;
 using Schlupy.Service.Common.Services.Membership;
-using Schlupy.Service.Handlers;
+using Schlupy.Service.Handlers.Password;
 using System;
 using System.Threading.Tasks;
 
@@ -54,18 +54,11 @@ namespace Schlupy.Service.Services.Membership
             user.HashedPassword = hashedPassword.Hash;
             user.PasswordSalt = hashedPassword.Salt;
 
-            try
-            {
-                await UserRepository.InsertAsync(user);
-                response.IsSuccess = true;
-                response.Message = "User successfully added";
+            await UserRepository.InsertAsync(user);
+            response.IsSuccess = true;
+            response.Message = "User successfully added";
 
-                return response;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return response;
         }
 
         #endregion Methods

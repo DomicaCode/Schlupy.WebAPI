@@ -1,4 +1,4 @@
-﻿using Schlupy.Model.Common;
+﻿using Schlupy.Model.Common.Models;
 using System.Threading.Tasks;
 
 namespace Schlupy.Service.Common.Services.Membership

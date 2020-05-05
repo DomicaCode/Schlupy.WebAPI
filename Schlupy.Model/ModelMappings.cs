@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
-using Schlupy.Model.Common;
+using Schlupy.Model.Common.Models;
+using Schlupy.Model.Models;
 
 namespace Schlupy.Model
 {

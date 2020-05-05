@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Schlupy.Common.Filters;
+using Schlupy.DAL.Context;
 using Schlupy.Model.Models;
 using Schlupy.Repository.Common.Repositories;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ namespace Schlupy.Repository.Repositories
     {
         #region Constructors
 
-        public UserRepository(DAL.Context.SchlupyContext context, AutoMapper.IMapper mapper) : base(context, mapper)
+        public UserRepository(SchlupyContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
@@ -18,19 +20,21 @@ namespace Schlupy.Repository.Repositories
 
         #region Methods
 
-        public async override Task<User> GetAsync(UserFilter filter)
+        public override async Task<User> GetAsync(UserFilter filter)
         {
             if (filter.Id != null)
             {
-                return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
+                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
             }
-            else if (filter.Username != null)
+
+            if (filter.Username != null)
             {
-                return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Username == filter.Username);
+                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Username == filter.Username);
             }
-            else if (filter.Email != null)
+
+            if (filter.Email != null)
             {
-                return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Email == filter.Email);
+                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Email == filter.Email);
             }
 
             return null;

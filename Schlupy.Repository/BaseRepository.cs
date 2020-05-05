@@ -16,7 +16,7 @@ namespace Schlupy.Repository
     {
         #region Fields
 
-        public readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> DbSet;
         private readonly SchlupyContext _context;
 
         #endregion Fields
@@ -27,7 +27,7 @@ namespace Schlupy.Repository
         {
             Mapper = mapper;
             _context = context;
-            _dbSet = context.Set<TEntity>();
+            DbSet = context.Set<TEntity>();
         }
 
         #endregion Constructors
@@ -48,7 +48,7 @@ namespace Schlupy.Repository
             };
             var entity = await GetAsync(filter);
 
-            var result = _dbSet.Remove(entity);
+            var result = DbSet.Remove(entity);
 
             if (result.State != EntityState.Deleted) return false;
 
@@ -68,7 +68,7 @@ namespace Schlupy.Repository
 
             var foodItemToEdit = Mapper.Map(entity, currentEntity);
 
-            var result = _dbSet.Update(foodItemToEdit);
+            var result = DbSet.Update(foodItemToEdit);
 
             if (result.State != EntityState.Modified) return false;
 
@@ -79,14 +79,14 @@ namespace Schlupy.Repository
 
         public virtual async Task<IList<TEntity>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            return await DbSet.ToListAsync();
         }
 
         public virtual async Task<TEntity> GetAsync(TFilter filter)
         {
             if (filter.Id != null)
             {
-                return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
+                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
             }
 
             return null;
@@ -97,20 +97,13 @@ namespace Schlupy.Repository
             entity.DateCreated = DateTime.UtcNow;
             entity.DateUpdated = DateTime.UtcNow;
 
-            var result = _dbSet.Add(entity);
+            var result = await DbSet.AddAsync(entity);
 
             if (result.State != EntityState.Added) return false;
 
-            try
-            {
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-                return true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return true;
         }
 
         #endregion Methods

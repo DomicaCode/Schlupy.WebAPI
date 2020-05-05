@@ -12,7 +12,7 @@ namespace Schlupy.WebAPI.Infrastructure
     {
         #region Fields
 
-        private readonly RequestDelegate next;
+        private readonly RequestDelegate _next;
 
         #endregion Fields
 
@@ -20,22 +20,22 @@ namespace Schlupy.WebAPI.Infrastructure
 
         public ErrorHandlingMiddleware(RequestDelegate next)
         {
-            this.next = next;
+            _next = next;
         }
 
         #endregion Constructors
 
         #region Methods
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        public async Task Invoke(HttpContext context)
         {
             try
             {
-                await next(context);
+                await _next(context);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex).ConfigureAwait(false);
             }
         }
 
@@ -53,8 +53,10 @@ namespace Schlupy.WebAPI.Infrastructure
                 IsSuccess = false,
             };
 
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            var serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
 
             var result = JsonConvert.SerializeObject(response, serializerSettings);
             context.Response.ContentType = "application/json";

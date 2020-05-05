@@ -1,4 +1,4 @@
-﻿using Schlupy.Model.Common;
+﻿using Schlupy.Model.Common.Models;
 
 namespace Schlupy.Service.Common.Services.Authorization
 {

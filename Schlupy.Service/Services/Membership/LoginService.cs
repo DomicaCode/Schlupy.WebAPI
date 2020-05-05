@@ -1,9 +1,8 @@
 ﻿using Schlupy.Common.Filters;
-using Schlupy.Model.Common;
+using Schlupy.Model.Common.Models;
 using Schlupy.Service.Common.Services.Authorization;
 using Schlupy.Service.Common.Services.Membership;
-using Schlupy.Service.Handlers;
-using System;
+using Schlupy.Service.Handlers.Password;
 using System.Threading.Tasks;
 
 namespace Schlupy.Service.Services.Membership
@@ -36,27 +35,18 @@ namespace Schlupy.Service.Services.Membership
                 Username = username
             };
 
-            try
+            var user = await UserService.GetUserAsync(filter);
+            if (user == null)
             {
-                var user = await UserService.GetUserAsync(filter);
-                if (user == null)
-                {
-                    //todo response handling
-                    return default;
-                }
-
-                if (PasswordHandler.VerifyPassword(password, user.HashedPassword, user.PasswordSalt))
-                {
-                    return AuthorizationService.CreateToken(username, password);
-                }
-
                 //todo response handling
                 return default;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            return PasswordHandler.VerifyPassword(password, user.HashedPassword, user.PasswordSalt) ?
+                AuthorizationService.CreateToken(username, password)
+                : default;
+
+            //todo response handling
         }
 
         #endregion Methods

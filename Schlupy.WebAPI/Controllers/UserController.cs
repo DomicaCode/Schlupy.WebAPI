@@ -9,7 +9,7 @@ namespace Schlupy.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public partial class UserController : ControllerBase
+    public class UserController : ControllerBase
     {
         #region Constructors
 
@@ -23,8 +23,8 @@ namespace Schlupy.WebAPI.Controllers
 
         #region Properties
 
-        public IMapper Mapper { get; }
-        public IUserService UserService { get; }
+        private IMapper Mapper { get; }
+        private IUserService UserService { get; }
 
         #endregion Properties
 
@@ -36,16 +36,9 @@ namespace Schlupy.WebAPI.Controllers
         {
             var user = Mapper.Map<User>(model);
 
-            try
-            {
-                var response = await UserService.RegisterAsync(user);
+            var response = await UserService.RegisterAsync(user);
 
-                return Ok(response);
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
+            return Ok(response);
         }
 
         #endregion Methods

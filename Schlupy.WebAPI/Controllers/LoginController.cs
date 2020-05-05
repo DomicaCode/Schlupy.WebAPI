@@ -23,7 +23,7 @@ namespace Schlupy.WebAPI.Controllers
 
         #region Properties
 
-        protected ILoginService LoginService { get; }
+        private ILoginService LoginService { get; }
 
         #endregion Properties
 

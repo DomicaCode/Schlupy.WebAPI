@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
-using Schlupy.Model;
-using Schlupy.Model.Common;
+﻿using Microsoft.IdentityModel.Tokens;
+using Schlupy.Model.Common.Models;
+using Schlupy.Model.Models;
 using Schlupy.Service.Common.Services.Authorization;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,21 +11,6 @@ namespace Schlupy.Service.Services.Authorization
 {
     public class AuthorizationService : IAuthorizationService
     {
-        #region Constructors
-
-        public AuthorizationService(IMapper mapper)
-        {
-            Mapper = mapper;
-        }
-
-        #endregion Constructors
-
-        #region Properties
-
-        public IMapper Mapper { get; }
-
-        #endregion Properties
-
         #region Methods
 
         public IToken CreateToken(string userName, string password)
@@ -48,7 +32,7 @@ namespace Schlupy.Service.Services.Authorization
             };
         }
 
-        private ClaimsIdentity CreateUserClaims(string username, string password)
+        private static ClaimsIdentity CreateUserClaims(string username, string password)
         {
             return new ClaimsIdentity(new[]
                 {
