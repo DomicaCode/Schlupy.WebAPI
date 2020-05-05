@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Schlupy.DAL.Context;
@@ -9,9 +10,10 @@ using Schlupy.DAL.Context;
 namespace Schlupy.WebAPI.Migrations
 {
     [DbContext(typeof(SchlupyContext))]
-    partial class SchlupyContextModelSnapshot : ModelSnapshot
+    [Migration("20200505192456_1.0.3.2")]
+    partial class _1032
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

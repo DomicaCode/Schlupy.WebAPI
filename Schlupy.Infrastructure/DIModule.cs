@@ -4,8 +4,10 @@ using Schlupy.Repository.Common;
 using Schlupy.Repository.Common.Repositories;
 using Schlupy.Repository.Repositories;
 using Schlupy.Service.Common.Services.Authorization;
+using Schlupy.Service.Common.Services.Clock;
 using Schlupy.Service.Common.Services.Membership;
 using Schlupy.Service.Services.Authorization;
+using Schlupy.Service.Services.Clock;
 using Schlupy.Service.Services.Membership;
 
 namespace Schlupy.Infrastructure
@@ -23,6 +25,7 @@ namespace Schlupy.Infrastructure
                 .As(typeof(IBaseRepository<,>));
 
             builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<ClockRepository>().As<IClockRepository>();
 
             #endregion Repositories
 
@@ -35,6 +38,7 @@ namespace Schlupy.Infrastructure
             builder.RegisterType<LoginService>().As<ILoginService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<ClockService>().As<IClockService>();
 
             #endregion Services
 

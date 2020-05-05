@@ -13,13 +13,13 @@ namespace Schlupy.Service.Services.Authorization
     {
         #region Methods
 
-        public IToken CreateToken(string userName, string password)
+        public IToken CreateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("DrhX3HpOxgAKo94ryrOaQbBVIdrKqJJ8");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = CreateUserClaims(userName, password),
+                Subject = CreateUserClaims(user),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -32,14 +32,14 @@ namespace Schlupy.Service.Services.Authorization
             };
         }
 
-        private static ClaimsIdentity CreateUserClaims(string username, string password)
+        private static ClaimsIdentity CreateUserClaims(User user)
         {
             return new ClaimsIdentity(new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, username),
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Email, username),
-                    new Claim("id", "nekiid")
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim("userId", user.Id.ToString())
                 });
         }
 

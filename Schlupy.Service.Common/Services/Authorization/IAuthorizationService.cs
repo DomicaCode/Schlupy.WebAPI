@@ -1,4 +1,5 @@
 ﻿using Schlupy.Model.Common.Models;
+using Schlupy.Model.Models;
 
 namespace Schlupy.Service.Common.Services.Authorization
 {
@@ -6,7 +7,7 @@ namespace Schlupy.Service.Common.Services.Authorization
     {
         #region Methods
 
-        IToken CreateToken(string usernName, string password);
+        IToken CreateToken(User user);
 
         #endregion Methods
     }

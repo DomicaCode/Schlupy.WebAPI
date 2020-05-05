@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Schlupy.DAL.Context;
@@ -9,9 +10,10 @@ using Schlupy.DAL.Context;
 namespace Schlupy.WebAPI.Migrations
 {
     [DbContext(typeof(SchlupyContext))]
-    partial class SchlupyContextModelSnapshot : ModelSnapshot
+    [Migration("20200505190059_1.0.3.1")]
+    partial class _1031
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +38,6 @@ namespace Schlupy.WebAPI.Migrations
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("IsRunning")
-                        .HasColumnType("boolean");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");

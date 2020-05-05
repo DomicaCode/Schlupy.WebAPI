@@ -22,22 +22,24 @@ namespace Schlupy.Repository.Repositories
 
         public override async Task<User> GetAsync(UserFilter filter)
         {
+            User result = default;
+
             if (filter.Id != null)
             {
-                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
+                result = await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
             }
 
             if (filter.Username != null)
             {
-                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Username == filter.Username);
+                result = await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Username == filter.Username);
             }
 
             if (filter.Email != null)
             {
-                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Email == filter.Email);
+                result = await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Email == filter.Email);
             }
 
-            return null;
+            return result;
         }
 
         #endregion Methods

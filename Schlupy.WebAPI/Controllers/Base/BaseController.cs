@@ -28,7 +28,7 @@ namespace Schlupy.WebAPI.Controllers.Base
                 return string.Empty;
             }
 
-            return HttpContext.User.Claims.Single(x => x.Type == "id").Value;
+            return HttpContext.User.Claims.Single(x => x.Type == "userId").Value;
         }
 
         #endregion Methods

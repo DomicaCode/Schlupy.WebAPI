@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Schlupy.Model.Models;
+using Schlupy.Model.Models.Clock;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Schlupy.DAL.Context
@@ -16,7 +17,8 @@ namespace Schlupy.DAL.Context
 
         #region Properties
 
-        public DbSet<User> FoodItem { get; set; }
+        public DbSet<ClockEntry> ClockEntry { get; set; }
+        public DbSet<User> User { get; set; }
 
         #endregion Properties
     }

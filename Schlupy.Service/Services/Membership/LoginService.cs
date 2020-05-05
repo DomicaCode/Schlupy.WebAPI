@@ -21,8 +21,8 @@ namespace Schlupy.Service.Services.Membership
 
         #region Properties
 
-        public IUserService UserService { get; }
-        protected IAuthorizationService AuthorizationService { get; private set; }
+        private IAuthorizationService AuthorizationService { get; set; }
+        private IUserService UserService { get; }
 
         #endregion Properties
 
@@ -38,15 +38,12 @@ namespace Schlupy.Service.Services.Membership
             var user = await UserService.GetUserAsync(filter);
             if (user == null)
             {
-                //todo response handling
                 return default;
             }
 
             return PasswordHandler.VerifyPassword(password, user.HashedPassword, user.PasswordSalt) ?
-                AuthorizationService.CreateToken(username, password)
+                AuthorizationService.CreateToken(user)
                 : default;
-
-            //todo response handling
         }
 
         #endregion Methods

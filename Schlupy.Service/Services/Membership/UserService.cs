@@ -22,7 +22,7 @@ namespace Schlupy.Service.Services.Membership
 
         #region Properties
 
-        public IUserRepository UserRepository { get; }
+        private IUserRepository UserRepository { get; }
 
         #endregion Properties
 
@@ -39,7 +39,8 @@ namespace Schlupy.Service.Services.Membership
 
             var filter = new UserFilter
             {
-                Username = user.Username
+                Username = user.Username,
+                Email = user.Email
             };
 
             var currentUser = await GetUserAsync(filter);
@@ -55,6 +56,7 @@ namespace Schlupy.Service.Services.Membership
             user.PasswordSalt = hashedPassword.Salt;
 
             await UserRepository.InsertAsync(user);
+
             response.IsSuccess = true;
             response.Message = "User successfully added";
 
